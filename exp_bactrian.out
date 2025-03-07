@@ -1,0 +1,208 @@
+/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/timm/optim/optim_factory.py:7: FutureWarning: Importing from timm.optim.optim_factory is deprecated, please import via timm.optim
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.optim", FutureWarning)
+| distributed init (rank 0): env://, gpu 0
+[rank0]:[W228 09:19:30.950672124 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[09:19:31.189954] job dir: /raid/speech/snegha/prompt_tuning/llama_adapter/LLaMA-Adapter/alpaca_finetuning_v1
+[09:19:31.190139] Namespace(batch_size=4,
+epochs=5,
+accum_iter=1,
+llama_model_path='model/LLaMA-7B',
+model='Llama7B_adapter',
+adapter_layer=30,
+adapter_len=10,
+max_seq_len=512,
+weight_decay=0.02,
+lr=None,
+blr=0.009,
+min_lr=0.0,
+warmup_epochs=2,
+data_path='bactrian.json',
+output_dir='./checkpoint/',
+log_dir='./output_dir',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+rank=0,
+gpu=0,
+distributed=True,
+dist_backend='nccl')
+[09:19:33.233396] <__main__.InstructionDataset object at 0x7445e6c97ca0>
+[09:19:33.233497] <__main__.InstructionDataset object at 0x7445dc9bbdf0>
+[09:19:33.233588] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7445dcd7d9d0>
+[09:19:42.109791] model/LLaMA-7B/consolidated.00.pth
+/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/__init__.py:1236: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[09:19:45.095548] Model = Transformer(
+  (tok_embeddings): Embedding(32000, 4096)
+  (adapter_query): Embedding(300, 4096)
+  (criterion): CrossEntropyLoss()
+  (layers): ModuleList(
+    (0-31): 32 x TransformerBlock(
+      (attention): Attention(
+        (wq): Linear(in_features=4096, out_features=4096, bias=False)
+        (wk): Linear(in_features=4096, out_features=4096, bias=False)
+        (wv): Linear(in_features=4096, out_features=4096, bias=False)
+        (wo): Linear(in_features=4096, out_features=4096, bias=False)
+      )
+      (feed_forward): FeedForward(
+        (w1): Linear(in_features=4096, out_features=11008, bias=False)
+        (w2): Linear(in_features=11008, out_features=4096, bias=False)
+        (w3): Linear(in_features=4096, out_features=11008, bias=False)
+      )
+      (attention_norm): RMSNorm()
+      (ffn_norm): RMSNorm()
+    )
+  )
+  (norm): RMSNorm()
+  (output): Linear(in_features=4096, out_features=32000, bias=False)
+)
+[09:19:45.095699] base lr: 9.00e-03
+[09:19:45.095721] actual lr: 1.41e-04
+[09:19:45.095744] accumulate grad iterations: 1
+[09:19:45.095764] effective batch size: 4
+[09:19:45.123186] AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.000140625
+    maximize: False
+    weight_decay: 0.0
+
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.000140625
+    maximize: False
+    weight_decay: 0.02
+)
+/raid/speech/snegha/prompt_tuning/llama_adapter/LLaMA-Adapter/alpaca_finetuning_v1/util/misc.py:255: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+[09:19:45.123791] Start training for 5 epochs
+[09:19:45.125999] log_dir: ./output_dir
+[rank0]:[W228 09:19:46.247313935 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[09:19:46.400208] Epoch: [0]  [    0/18425]  eta: 6:30:55  lr: 0.000000  closs: 1.1484 (1.1484)  time: 1.2730  data: 0.3956  max mem: 26407
+[09:19:50.754946] Epoch: [0]  [   10/18425]  eta: 2:37:00  lr: 0.000000  closs: 1.1299 (1.1564)  time: 0.5115  data: 0.0361  max mem: 26431
+[09:19:55.074376] Epoch: [0]  [   20/18425]  eta: 2:25:16  lr: 0.000000  closs: 1.1201 (1.1565)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:19:59.395052] Epoch: [0]  [   30/18425]  eta: 2:21:04  lr: 0.000000  closs: 1.1504 (1.1758)  time: 0.4319  data: 0.0001  max mem: 26431
+[09:20:03.726908] Epoch: [0]  [   40/18425]  eta: 2:18:58  lr: 0.000000  closs: 1.1582 (1.1615)  time: 0.4325  data: 0.0001  max mem: 26431
+[09:20:08.065084] Epoch: [0]  [   50/18425]  eta: 2:17:42  lr: 0.000000  closs: 1.0527 (1.1550)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:20:12.403291] Epoch: [0]  [   60/18425]  eta: 2:16:50  lr: 0.000000  closs: 1.0938 (1.1474)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:20:16.756201] Epoch: [0]  [   70/18425]  eta: 2:16:15  lr: 0.000000  closs: 1.1484 (1.1577)  time: 0.4345  data: 0.0001  max mem: 26431
+[09:20:21.105699] Epoch: [0]  [   80/18425]  eta: 2:15:47  lr: 0.000000  closs: 1.1553 (1.1583)  time: 0.4350  data: 0.0001  max mem: 26431
+[09:20:25.445432] Epoch: [0]  [   90/18425]  eta: 2:15:22  lr: 0.000000  closs: 1.1641 (1.1921)  time: 0.4344  data: 0.0001  max mem: 26431
+[09:20:29.787525] Epoch: [0]  [  100/18425]  eta: 2:15:01  lr: 0.000000  closs: 1.1992 (1.1972)  time: 0.4340  data: 0.0001  max mem: 26431
+[09:20:34.126665] Epoch: [0]  [  110/18425]  eta: 2:14:43  lr: 0.000000  closs: 1.1846 (1.1963)  time: 0.4340  data: 0.0001  max mem: 26431
+[09:20:38.462730] Epoch: [0]  [  120/18425]  eta: 2:14:27  lr: 0.000000  closs: 1.1270 (1.1909)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:20:42.804256] Epoch: [0]  [  130/18425]  eta: 2:14:13  lr: 0.000000  closs: 1.0449 (1.1841)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:20:47.144274] Epoch: [0]  [  140/18425]  eta: 2:14:01  lr: 0.000001  closs: 1.1631 (1.1884)  time: 0.4340  data: 0.0001  max mem: 26431
+[09:20:51.479964] Epoch: [0]  [  150/18425]  eta: 2:13:49  lr: 0.000001  closs: 1.1953 (1.1903)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:20:55.815465] Epoch: [0]  [  160/18425]  eta: 2:13:38  lr: 0.000001  closs: 1.0195 (1.1796)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:21:00.153725] Epoch: [0]  [  170/18425]  eta: 2:13:28  lr: 0.000001  closs: 0.9565 (1.1685)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:21:04.492475] Epoch: [0]  [  180/18425]  eta: 2:13:18  lr: 0.000001  closs: 1.0156 (1.1657)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:21:08.832712] Epoch: [0]  [  190/18425]  eta: 2:13:10  lr: 0.000001  closs: 1.1367 (1.1669)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:21:13.174085] Epoch: [0]  [  200/18425]  eta: 2:13:01  lr: 0.000001  closs: 1.1582 (1.1614)  time: 0.4340  data: 0.0001  max mem: 26431
+[09:21:17.510633] Epoch: [0]  [  210/18425]  eta: 2:12:53  lr: 0.000001  closs: 1.1777 (1.1666)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:21:21.844484] Epoch: [0]  [  220/18425]  eta: 2:12:45  lr: 0.000001  closs: 1.2617 (1.1708)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:21:26.178691] Epoch: [0]  [  230/18425]  eta: 2:12:38  lr: 0.000001  closs: 1.0957 (1.1653)  time: 0.4333  data: 0.0001  max mem: 26431
+[09:21:30.511734] Epoch: [0]  [  240/18425]  eta: 2:12:30  lr: 0.000001  closs: 1.0361 (1.1621)  time: 0.4333  data: 0.0001  max mem: 26431
+[09:21:34.852974] Epoch: [0]  [  250/18425]  eta: 2:12:23  lr: 0.000001  closs: 1.1436 (1.1627)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:21:39.204269] Epoch: [0]  [  260/18425]  eta: 2:12:18  lr: 0.000001  closs: 1.1436 (1.1615)  time: 0.4346  data: 0.0001  max mem: 26431
+[09:21:43.537363] Epoch: [0]  [  270/18425]  eta: 2:12:11  lr: 0.000001  closs: 0.9961 (1.1581)  time: 0.4341  data: 0.0001  max mem: 26431
+[09:21:47.869083] Epoch: [0]  [  280/18425]  eta: 2:12:04  lr: 0.000001  closs: 1.0957 (1.1560)  time: 0.4332  data: 0.0001  max mem: 26431
+[09:21:52.206570] Epoch: [0]  [  290/18425]  eta: 2:11:58  lr: 0.000001  closs: 1.1162 (1.1587)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:21:56.547665] Epoch: [0]  [  300/18425]  eta: 2:11:52  lr: 0.000001  closs: 1.0791 (1.1563)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:22:00.881620] Epoch: [0]  [  310/18425]  eta: 2:11:46  lr: 0.000001  closs: 0.9814 (1.1509)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:22:05.213795] Epoch: [0]  [  320/18425]  eta: 2:11:39  lr: 0.000001  closs: 1.1094 (1.1576)  time: 0.4332  data: 0.0001  max mem: 26431
+[09:22:09.547360] Epoch: [0]  [  330/18425]  eta: 2:11:33  lr: 0.000001  closs: 1.2344 (1.1597)  time: 0.4332  data: 0.0001  max mem: 26431
+[09:22:13.883952] Epoch: [0]  [  340/18425]  eta: 2:11:27  lr: 0.000001  closs: 1.1875 (1.1592)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:22:18.216980] Epoch: [0]  [  350/18425]  eta: 2:11:22  lr: 0.000001  closs: 1.1904 (1.1603)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:22:22.565897] Epoch: [0]  [  360/18425]  eta: 2:11:17  lr: 0.000001  closs: 1.0352 (1.1583)  time: 0.4340  data: 0.0001  max mem: 26431
+[09:22:26.902542] Epoch: [0]  [  370/18425]  eta: 2:11:11  lr: 0.000001  closs: 1.0332 (1.1570)  time: 0.4342  data: 0.0001  max mem: 26431
+[09:22:31.241706] Epoch: [0]  [  380/18425]  eta: 2:11:06  lr: 0.000001  closs: 1.1123 (1.1606)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:22:35.572607] Epoch: [0]  [  390/18425]  eta: 2:11:00  lr: 0.000001  closs: 1.1221 (1.1581)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:22:39.914164] Epoch: [0]  [  400/18425]  eta: 2:10:55  lr: 0.000002  closs: 1.0771 (1.1562)  time: 0.4335  data: 0.0002  max mem: 26431
+[09:22:44.258954] Epoch: [0]  [  410/18425]  eta: 2:10:50  lr: 0.000002  closs: 1.0771 (1.1576)  time: 0.4342  data: 0.0001  max mem: 26431
+[09:22:48.589219] Epoch: [0]  [  420/18425]  eta: 2:10:44  lr: 0.000002  closs: 1.0869 (1.1578)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:22:52.931003] Epoch: [0]  [  430/18425]  eta: 2:10:39  lr: 0.000002  closs: 1.1328 (1.1567)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:22:57.268107] Epoch: [0]  [  440/18425]  eta: 2:10:34  lr: 0.000002  closs: 1.1484 (1.1595)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:23:01.600344] Epoch: [0]  [  450/18425]  eta: 2:10:29  lr: 0.000002  closs: 1.0508 (1.1579)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:23:05.938910] Epoch: [0]  [  460/18425]  eta: 2:10:24  lr: 0.000002  closs: 1.0342 (1.1585)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:23:10.278142] Epoch: [0]  [  470/18425]  eta: 2:10:19  lr: 0.000002  closs: 1.1035 (1.1585)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:23:14.611990] Epoch: [0]  [  480/18425]  eta: 2:10:14  lr: 0.000002  closs: 1.1816 (1.1607)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:23:18.947708] Epoch: [0]  [  490/18425]  eta: 2:10:08  lr: 0.000002  closs: 1.2256 (1.1599)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:23:23.288467] Epoch: [0]  [  500/18425]  eta: 2:10:04  lr: 0.000002  closs: 1.1992 (1.1604)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:23:27.627239] Epoch: [0]  [  510/18425]  eta: 2:09:59  lr: 0.000002  closs: 1.1064 (1.1565)  time: 0.4339  data: 0.0002  max mem: 26431
+[09:23:31.977626] Epoch: [0]  [  520/18425]  eta: 2:09:54  lr: 0.000002  closs: 0.9463 (1.1544)  time: 0.4344  data: 0.0001  max mem: 26431
+[09:23:36.327418] Epoch: [0]  [  530/18425]  eta: 2:09:50  lr: 0.000002  closs: 1.0625 (1.1527)  time: 0.4349  data: 0.0001  max mem: 26431
+[09:23:40.668669] Epoch: [0]  [  540/18425]  eta: 2:09:45  lr: 0.000002  closs: 1.0771 (1.1530)  time: 0.4345  data: 0.0001  max mem: 26431
+[09:23:45.004442] Epoch: [0]  [  550/18425]  eta: 2:09:40  lr: 0.000002  closs: 1.0957 (1.1539)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:23:49.343730] Epoch: [0]  [  560/18425]  eta: 2:09:35  lr: 0.000002  closs: 1.0957 (1.1566)  time: 0.4337  data: 0.0001  max mem: 26431
+[09:23:53.676790] Epoch: [0]  [  570/18425]  eta: 2:09:30  lr: 0.000002  closs: 1.0547 (1.1585)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:23:58.017693] Epoch: [0]  [  580/18425]  eta: 2:09:26  lr: 0.000002  closs: 1.0781 (1.1589)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:24:02.360032] Epoch: [0]  [  590/18425]  eta: 2:09:21  lr: 0.000002  closs: 1.0498 (1.1598)  time: 0.4341  data: 0.0001  max mem: 26431
+[09:24:06.702437] Epoch: [0]  [  600/18425]  eta: 2:09:16  lr: 0.000002  closs: 1.0527 (1.1591)  time: 0.4342  data: 0.0001  max mem: 26431
+[09:24:11.032769] Epoch: [0]  [  610/18425]  eta: 2:09:11  lr: 0.000002  closs: 1.1016 (1.1592)  time: 0.4336  data: 0.0001  max mem: 26431
+[09:24:15.372046] Epoch: [0]  [  620/18425]  eta: 2:09:06  lr: 0.000002  closs: 1.1035 (1.1597)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:24:19.704652] Epoch: [0]  [  630/18425]  eta: 2:09:02  lr: 0.000002  closs: 1.1904 (1.1638)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:24:24.041407] Epoch: [0]  [  640/18425]  eta: 2:08:57  lr: 0.000002  closs: 1.0928 (1.1623)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:24:28.371468] Epoch: [0]  [  650/18425]  eta: 2:08:52  lr: 0.000002  closs: 1.0996 (1.1636)  time: 0.4333  data: 0.0001  max mem: 26431
+[09:24:32.712891] Epoch: [0]  [  660/18425]  eta: 2:08:47  lr: 0.000003  closs: 1.1084 (1.1641)  time: 0.4335  data: 0.0001  max mem: 26431
+[09:24:37.049545] Epoch: [0]  [  670/18425]  eta: 2:08:43  lr: 0.000003  closs: 1.0439 (1.1644)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:24:41.392068] Epoch: [0]  [  680/18425]  eta: 2:08:38  lr: 0.000003  closs: 1.0322 (1.1654)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:24:45.735287] Epoch: [0]  [  690/18425]  eta: 2:08:33  lr: 0.000003  closs: 1.0088 (1.1634)  time: 0.4342  data: 0.0001  max mem: 26431
+[09:24:50.069797] Epoch: [0]  [  700/18425]  eta: 2:08:29  lr: 0.000003  closs: 1.0010 (1.1648)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:24:54.415162] Epoch: [0]  [  710/18425]  eta: 2:08:24  lr: 0.000003  closs: 1.0430 (1.1643)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:24:58.749793] Epoch: [0]  [  720/18425]  eta: 2:08:20  lr: 0.000003  closs: 1.0596 (1.1644)  time: 0.4339  data: 0.0001  max mem: 26431
+[09:25:03.077759] Epoch: [0]  [  730/18425]  eta: 2:08:15  lr: 0.000003  closs: 1.0195 (1.1631)  time: 0.4331  data: 0.0001  max mem: 26431
+[09:25:07.409847] Epoch: [0]  [  740/18425]  eta: 2:08:10  lr: 0.000003  closs: 0.9756 (1.1621)  time: 0.4329  data: 0.0001  max mem: 26431
+[09:25:11.742760] Epoch: [0]  [  750/18425]  eta: 2:08:05  lr: 0.000003  closs: 1.0273 (1.1615)  time: 0.4332  data: 0.0001  max mem: 26431
+[09:25:16.080056] Epoch: [0]  [  760/18425]  eta: 2:08:01  lr: 0.000003  closs: 1.0713 (1.1604)  time: 0.4334  data: 0.0001  max mem: 26431
+[09:25:20.420753] Epoch: [0]  [  770/18425]  eta: 2:07:56  lr: 0.000003  closs: 1.0576 (1.1597)  time: 0.4338  data: 0.0001  max mem: 26431
+[09:25:24.762925] Epoch: [0]  [  780/18425]  eta: 2:07:52  lr: 0.000003  closs: 1.0498 (1.1592)  time: 0.4341  data: 0.0001  max mem: 26431
+E0228 09:25:27.466657 3969323 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: -15) local_rank: 0 (pid: 3969352) of binary: /raid/speech/snegha/miniconda3/envs/llama_adapter/bin/python
+Traceback (most recent call last):
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/distributed/run.py", line 918, in main
+    run(args)
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/raid/speech/snegha/miniconda3/envs/llama_adapter/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+=========================================================
+finetuning.py FAILED
+---------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+---------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-02-28_09:25:27
+  host      : iitb-dgx4.iitb.ac.in.iitb.ac.in
+  rank      : 0 (local_rank: 0)
+  exitcode  : -15 (pid: 3969352)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 3969352
+=========================================================
